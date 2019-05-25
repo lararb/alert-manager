@@ -11,7 +11,7 @@ class AlertManager extends React.Component {
                 <section className="field_section">
                     <h1 className="app_title">Alert manager</h1>
                     <div className="field_container">
-                        <label htmlFor="field"></label>
+                        <label htmlFor="field" className="field_label">Campo de formulario</label>
                         <input id="field" type="text" className="field" ref={textInput}/>
                         <button className={`field_btn ${disableBtn ? 'field_btn--disabled' : ''}`} onClick={clickAdd} disabled={disableBtn} >Add</button>
                     </div>

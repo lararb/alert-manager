@@ -38,8 +38,6 @@ class App extends React.Component {
         arrAlert: newState
       }
     })
-
-    this.handleDisableBtn();
   }
 
   setChangeColor(arr) {
@@ -52,16 +50,12 @@ class App extends React.Component {
     }
   }
 
+  handleDisableBtn(arr) {
 
-  handleDisableBtn() {
-
-    if(this.state.arrAlert.length >= 11) {
-      this.setState({
-        disableBtn: true
-      })
+    if(arr.length >= 12) {
+     return true
     }
   }
-
 
   handleDeleteAlert(event) {
     const btnParent = event.currentTarget.parentElement;
@@ -77,13 +71,12 @@ class App extends React.Component {
   }
 
 
-
   render() {
-    const {arrAlert, deleteAlert, disableBtn} = this.state;
+    const {arrAlert} = this.state;
 
     return (
       <div className="App">
-        <AlertManager arrAlert={arrAlert} color={this.setChangeColor(arrAlert)} disableBtn={disableBtn} deleteAlert={deleteAlert} clickAdd={this.handleClickAdd} clickDelete={this.handleDeleteAlert} textInput={this.textInput}/>
+        <AlertManager arrAlert={arrAlert} color={this.setChangeColor(arrAlert)} disableBtn={this.handleDisableBtn(arrAlert)} clickAdd={this.handleClickAdd} clickDelete={this.handleDeleteAlert} textInput={this.textInput}/>
       </div>
     );
   }

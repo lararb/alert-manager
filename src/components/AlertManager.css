@@ -49,3 +49,7 @@
     text-transform: uppercase;
     box-shadow: 1px 1px 1px grey;
 }
+
+.field_label {
+    font-size: 0;
+}
