@@ -5,7 +5,7 @@ import './AlertManager.css';
 
 class AlertManager extends React.Component {
     render() {
-        const {arrAlert, disableBtn, color, deleteAlert, clickAdd, clickDelete} = this.props;
+        const {arrAlert, disableBtn, color, clickAdd, clickDelete} = this.props;
         return (
             <React.Fragment>
                 <section className="field_section">
@@ -20,7 +20,7 @@ class AlertManager extends React.Component {
                 <ul className="alert_list">
                     {arrAlert.map((item, index) =>
                     <li className="alert_item" key={index}>
-                        <Alert fieldText={item.fieldText} idGenerated={item.idGenerated} color={color} deleteAlert={deleteAlert} clickDelete={clickDelete} index={index}/>
+                        <Alert fieldText={item.fieldText} idGenerated={item.idGenerated} color={color} clickDelete={clickDelete} index={index}/>
                     </li>)}
                 </ul>
             </React.Fragment>

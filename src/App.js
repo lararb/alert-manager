@@ -11,12 +11,11 @@ class App extends React.Component {
     this.state = {
       arrAlert: [],
       color: '',
-      disableBtn: false,
-      deleteAlert: false
+      disableBtn: false
     }
 
     this.handleClickAdd = this.handleClickAdd.bind(this);
-    //this.handleDeleteAlert = this.handleDeleteAlert.bind(this);
+    this.handleDeleteAlert = this.handleDeleteAlert.bind(this);
   }
 
   getRandomInt(min, max) {
@@ -24,7 +23,6 @@ class App extends React.Component {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min;
   }
-
  
   handleClickAdd() {
     const inputValue = document.getElementById('field').value;
@@ -46,19 +44,19 @@ class App extends React.Component {
 
   handleChangeColor() {
     
-      if(this.state.arrAlert.length <= 2) {
-        this.setState({
-          color: 'green'
-        })
-      } else if (this.state.arrAlert.length >= 2 && this.state.arrAlert.length <= 6) {
-        this.setState({
-          color: 'yellow'
-        })
-      } else {
-        this.setState({
-          color: 'red'
-        })
-      }
+    if(this.state.arrAlert.length <= 2) {
+      this.setState({
+        color: 'green'
+      })
+    } else if (this.state.arrAlert.length >= 3 && this.state.arrAlert.length <= 7) {
+      this.setState({
+        color: 'yellow'
+      })
+    } else {
+      this.setState({
+        color: 'red'
+      })
+    }
   }
 
   handleDisableBtn() {
@@ -70,17 +68,19 @@ class App extends React.Component {
     }
   }
 
-  // handleDeleteAlert(event) {
-  //   const currentBtn = event.currentTarget;
-  //   console.log(currentBtn);
-  //   this.setState({
-  //     deleteAlert: true
-  //   })
+  handleDeleteAlert(event) {
+    const btnParent = event.currentTarget.parentElement;
 
-  //   if(currentBtn.id === currentBtn.parentElement.id) {
+    this.state.arrAlert.splice(btnParent.id, 1);
 
-  //   }
-  // }
+    this.setState({
+      arrAlert: this.state.arrAlert
+    })
+
+    this.handleChangeColor();
+  }
+
+
 
   render() {
     const {arrAlert, color, deleteAlert, disableBtn} = this.state;
