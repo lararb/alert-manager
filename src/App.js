@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import Alert from './components/Alert';
 
-const arrAlert = []
 
 class App extends React.Component { 
 
@@ -10,8 +9,9 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      fieldText: false,
-      idGenerated: false
+      arrAlert: [],
+      color: '',
+      disableBtn: false
     }
 
     this.handleChangeState = this.handleChangeState.bind(this);
@@ -28,17 +28,47 @@ class App extends React.Component {
   handleChangeState() {
     const inputValue = document.getElementById('field').value;
 
-    this.setState({
-      fieldText: inputValue,
-      idGenerated: this.getRandomInt(0, 100)
+    this.setState(prevState => {
+      const newState = [...prevState.arrAlert,
+        {fieldText: inputValue,
+        idGenerated: this.getRandomInt(0, 100)
+      }]
+
+      return {
+        arrAlert: newState
+      }
+
     })
-    this.handleAddAlert();
+
+    this.handleChangeColor();
+    this.handleDisableBtn();
   }
 
-  handleAddAlert() {
-    arrAlert.innerHTML = '';
-    arrAlert.push(<Alert fieldText={this.state.fieldText} idGenerated={this.state.idGenerated}/>);
-    console.log(arrAlert);
+  handleChangeColor() {
+    
+      if(this.state.arrAlert.length <= 2) {
+        this.setState({
+          color: 'green'
+        })
+      } else if (this.state.arrAlert.length >= 2 && this.state.arrAlert.length <= 6) {
+        this.setState({
+          color: 'yellow'
+        })
+      } else {
+        this.setState({
+          color: 'red'
+        })
+      }
+  }
+
+  handleDisableBtn() {
+
+    if(this.state.arrAlert.length >= 11) {
+      this.setState({
+        disableBtn: true
+      })
+    }
+
   }
 
   render() {
@@ -50,12 +80,15 @@ class App extends React.Component {
         <section className="field_section">
           <label htmlFor="field">Alert text</label>
           <input id="field" name="field" type="text" className="field"/>
-          <button className="field_btn" onClick={this.handleChangeState} >Add</button>
+          <button className="field_btn" onClick={this.handleChangeState} disabled={this.state.disableBtn} >Add</button>
         </section>
         
-        <ul className="alert_list">
-          {arrAlert.map((item, index) => <li className="alert_item" key={index} id={index}>{item}</li>)}
-        </ul>
+        <ol className="alert_list">
+          {this.state.arrAlert.map((item, index) =>
+          <li className="alert_item" key={index} id={index}>
+            <Alert fieldText={item.fieldText} idGenerated={item.idGenerated} color={this.state.color}/>
+          </li>)}
+        </ol>
 
       </div>
     );
