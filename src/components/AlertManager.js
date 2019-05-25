@@ -9,10 +9,12 @@ class AlertManager extends React.Component {
         return (
             <React.Fragment>
                 <section className="field_section">
-                    <h1 className="title">Alert manager</h1>
-                    <label htmlFor="field"></label>
-                    <input id="field" type="text" className="field"/>
-                    <button className="field_btn" onClick={clickAdd} disabled={disableBtn} >Add</button>
+                    <h1 className="app_title">Alert manager</h1>
+                    <div className="field_container">
+                        <label htmlFor="field"></label>
+                        <input id="field" type="text" className="field"/>
+                        <button className={`field_btn ${disableBtn ? 'field_btn--disabled' : ''}`} onClick={clickAdd} disabled={disableBtn} >Add</button>
+                    </div>
                 </section>
                 
                 <ul className="alert_list">

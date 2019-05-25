@@ -1,11 +1,51 @@
+.app_title {
+    text-transform: uppercase;
+}
+
 .alert_list {
     list-style: none;
+    margin-top: 40px;
 }
 
 .alert_item {
-    margin: 20px 0;
+    margin-bottom: 20px;
 }
 
 .field_section {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+}
+
+.field {
+    border: 1px solid grey;
+    border-radius: 3px;
+    margin-right: 10px;
+    padding: 5px;
+}
+
+.field_btn {
+    border: 0;
+    border-radius: 30px;
+    padding: 6px 20px;
+    margin-left: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: rgb(62, 133, 173);
+    color: white;
+    text-transform: uppercase;
+    box-shadow: 1px 1px 1px grey;
+}
+
+.field_btn--disabled {
+    border: 0;
+    border-radius: 30px;
+    padding: 6px 20px;
+    margin-left: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: grey;
+    color: white;
+    text-transform: uppercase;
+    box-shadow: 1px 1px 1px grey;
 }

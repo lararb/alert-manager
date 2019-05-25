@@ -11,7 +11,7 @@ class Alert extends React.Component {
                     <p className="alert_text">{fieldText}</p>
                     <small className="alert_id">ID: {idGenerated}</small>
                 </div>
-                <button className="alert_btn" id={index} onClick={clickDelete}><i className="far fa-times-circle"></i></button>
+                <button className="alert_btn" id={index} onClick={clickDelete}><i className="fas fa-times"></i></button>
             </div>
         );
     }
