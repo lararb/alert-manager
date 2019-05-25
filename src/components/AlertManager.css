@@ -1,0 +1,11 @@
+.alert_list {
+    list-style: none;
+}
+
+.alert_item {
+    margin: 20px 0;
+}
+
+.field_section {
+    text-align: center;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Alert from './components/Alert';
+import AlertManager from './components/AlertManager';
 
 
 class App extends React.Component { 
@@ -11,11 +11,12 @@ class App extends React.Component {
     this.state = {
       arrAlert: [],
       color: '',
-      disableBtn: false
+      disableBtn: false,
+      deleteAlert: false
     }
 
-    this.handleChangeState = this.handleChangeState.bind(this);
-
+    this.handleClickAdd = this.handleClickAdd.bind(this);
+    //this.handleDeleteAlert = this.handleDeleteAlert.bind(this);
   }
 
   getRandomInt(min, max) {
@@ -25,19 +26,18 @@ class App extends React.Component {
   }
 
  
-  handleChangeState() {
+  handleClickAdd() {
     const inputValue = document.getElementById('field').value;
 
     this.setState(prevState => {
       const newState = [...prevState.arrAlert,
         {fieldText: inputValue,
-        idGenerated: this.getRandomInt(0, 100)
-      }]
+        idGenerated: this.getRandomInt(0, 1000)
+        }]
 
       return {
         arrAlert: newState
       }
-
     })
 
     this.handleChangeColor();
@@ -68,28 +68,26 @@ class App extends React.Component {
         disableBtn: true
       })
     }
-
   }
 
+  // handleDeleteAlert(event) {
+  //   const currentBtn = event.currentTarget;
+  //   console.log(currentBtn);
+  //   this.setState({
+  //     deleteAlert: true
+  //   })
+
+  //   if(currentBtn.id === currentBtn.parentElement.id) {
+
+  //   }
+  // }
+
   render() {
+    const {arrAlert, color, deleteAlert, disableBtn} = this.state;
 
     return (
       <div className="App">
-        <h1 className="title">Alert manager</h1>
-
-        <section className="field_section">
-          <label htmlFor="field">Alert text</label>
-          <input id="field" name="field" type="text" className="field"/>
-          <button className="field_btn" onClick={this.handleChangeState} disabled={this.state.disableBtn} >Add</button>
-        </section>
-        
-        <ol className="alert_list">
-          {this.state.arrAlert.map((item, index) =>
-          <li className="alert_item" key={index} id={index}>
-            <Alert fieldText={item.fieldText} idGenerated={item.idGenerated} color={this.state.color}/>
-          </li>)}
-        </ol>
-
+        <AlertManager arrAlert={arrAlert} color={color} disableBtn={disableBtn} deleteAlert={deleteAlert} clickAdd={this.handleClickAdd} clickDelete={this.handleDeleteAlert}/>
       </div>
     );
   }
