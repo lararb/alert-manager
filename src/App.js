@@ -12,7 +12,6 @@ class App extends React.Component {
 
     this.state = {
       arrAlert: [],
-      color: '',
       disableBtn: false
     }
 
@@ -40,26 +39,19 @@ class App extends React.Component {
       }
     })
 
-    this.handleChangeColor();
     this.handleDisableBtn();
   }
 
-  handleChangeColor() {
-
-    if(this.state.arrAlert.length <= 2) {
-      this.setState({
-        color: 'green'
-      })
-    } else if (this.state.arrAlert.length >= 3 && this.state.arrAlert.length <= 7) {
-      this.setState({
-        color: 'yellow'
-      })
+  setChangeColor(arr) {
+    if(arr.length <= 3) {
+      return ('green');
+    } else if (arr.length >= 4 && arr.length <= 7) {
+      return ('yellow');
     } else {
-      this.setState({
-        color: 'red'
-      })
+      return ('red');
     }
   }
+
 
   handleDisableBtn() {
 
@@ -70,26 +62,28 @@ class App extends React.Component {
     }
   }
 
+
   handleDeleteAlert(event) {
     const btnParent = event.currentTarget.parentElement;
 
-    this.state.arrAlert.splice(btnParent.id, 1);
+    this.setState(prevState => {
 
-    this.setState({
-      arrAlert: this.state.arrAlert
+      prevState.arrAlert.splice(btnParent.id, 1);
+
+      return {
+        arrAlert: prevState.arrAlert
+     }
     })
-
-    this.handleChangeColor();
   }
 
 
 
   render() {
-    const {arrAlert, color, deleteAlert, disableBtn} = this.state;
+    const {arrAlert, deleteAlert, disableBtn} = this.state;
 
     return (
       <div className="App">
-        <AlertManager arrAlert={arrAlert} color={color} disableBtn={disableBtn} deleteAlert={deleteAlert} clickAdd={this.handleClickAdd} clickDelete={this.handleDeleteAlert} textInput={this.textInput}/>
+        <AlertManager arrAlert={arrAlert} color={this.setChangeColor(arrAlert)} disableBtn={disableBtn} deleteAlert={deleteAlert} clickAdd={this.handleClickAdd} clickDelete={this.handleDeleteAlert} textInput={this.textInput}/>
       </div>
     );
   }
