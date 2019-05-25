@@ -5,6 +5,7 @@
     align-items: flex-start;
     padding: 10px 12px;
     border-radius: 20px;
+    box-shadow: 2px 2px 2px grey;
 }
 
 .alert_text {
