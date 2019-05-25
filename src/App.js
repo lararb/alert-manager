@@ -8,6 +8,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
+    this.textInput = React.createRef();
+
     this.state = {
       arrAlert: [],
       color: '',
@@ -25,7 +27,7 @@ class App extends React.Component {
   }
  
   handleClickAdd() {
-    const inputValue = document.getElementById('field').value;
+    const inputValue = this.textInput.current.value;
 
     this.setState(prevState => {
       const newState = [...prevState.arrAlert,
@@ -43,7 +45,7 @@ class App extends React.Component {
   }
 
   handleChangeColor() {
-    
+
     if(this.state.arrAlert.length <= 2) {
       this.setState({
         color: 'green'
@@ -87,7 +89,7 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <AlertManager arrAlert={arrAlert} color={color} disableBtn={disableBtn} deleteAlert={deleteAlert} clickAdd={this.handleClickAdd} clickDelete={this.handleDeleteAlert}/>
+        <AlertManager arrAlert={arrAlert} color={color} disableBtn={disableBtn} deleteAlert={deleteAlert} clickAdd={this.handleClickAdd} clickDelete={this.handleDeleteAlert} textInput={this.textInput}/>
       </div>
     );
   }

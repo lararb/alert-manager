@@ -5,14 +5,14 @@ import './AlertManager.css';
 
 class AlertManager extends React.Component {
     render() {
-        const {arrAlert, disableBtn, color, clickAdd, clickDelete} = this.props;
+        const {arrAlert, disableBtn, color, clickAdd, clickDelete, textInput} = this.props;
         return (
             <React.Fragment>
                 <section className="field_section">
                     <h1 className="app_title">Alert manager</h1>
                     <div className="field_container">
                         <label htmlFor="field"></label>
-                        <input id="field" type="text" className="field"/>
+                        <input id="field" type="text" className="field" ref={textInput}/>
                         <button className={`field_btn ${disableBtn ? 'field_btn--disabled' : ''}`} onClick={clickAdd} disabled={disableBtn} >Add</button>
                     </div>
                 </section>
